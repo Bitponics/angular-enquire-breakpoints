@@ -26,7 +26,6 @@ angular.module("angular-enquire-breakpoints", []).directive('breakpoints',
                     var keys = Object.keys(breakpoints);
 
                     for (var i = 0; i < keys.length; i++) {
-
                         (function(i) {
                             enquire.register(breakpoints[keys[i]], {
 
@@ -68,8 +67,16 @@ angular.module("angular-enquire-breakpoints", []).directive('breakpoints',
                             });
 
                         })(i);
+                    };
 
-                    }
+                    scope.$on('$destroy', function(){
+                        for (var i = 0; i < keys.length; i++) {
+                            (function(i) {
+                                enquire.unregister(breakpoints[keys[i]]);
+                            })(i);
+                        }
+                    });
+
                 }
             };
         }
