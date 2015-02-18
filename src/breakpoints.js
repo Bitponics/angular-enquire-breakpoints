@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module("angular-enquire-breakpoints").directive('breakpoints',
+angular.module("angular-enquire-breakpoints", []).directive('breakpoints',
   [
     function() {
       return {
